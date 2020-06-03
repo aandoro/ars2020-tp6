@@ -1,10 +1,13 @@
 ## Instalacion
 
-primero usar este comando instalar dependecias del servidor
+Entrar a la carpeta server
+
+despues usar este comando instalar dependecias del servidor
 ```
 npm install
 ```
-despues para correrlo usar
+## Correr el server
+
 ```
 node index.js
 ```

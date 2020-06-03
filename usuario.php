@@ -11,41 +11,31 @@ class Usuario
     {
         $get_data = callAPI('GET', 'http://localhost:3000/usuario', false);
         $response = json_decode($get_data, true);
-        if ($response['error'] == true) {
-            return $response['mensaje'];
-        }
-        $data = $response['response']['data'][0];
-
-        return $data;
+        return $response;
     }
 
-    function save($usuario_nuevo)
+    function save($nombre, $apellido)
     {
-        $make_call = callAPI('POST', 'http://localhost:3000/usuario', json_encode($usuario_nuevo));
+        $this->nombre = $nombre;
+        $this->apellido = $apellido;
+        $make_call = callAPI('POST', 'http://localhost:3000/usuario', json_encode($this));
         $response = json_decode($make_call, true);
-        if ($response['error'] == true) {
-            return $response['mensaje'];
-        }
-        $data     = $response['response']['data'][0];
-        return $data;
+        return $response;
     }
 
-    function update($usuario_actualizar)
+    function update($nombre, $apellido)
     {
-        $update_plan = callAPI('PUT', 'http://localhost:3000/usuario', json_encode($usuario_actualizar));
+        $this->nombre = $nombre;
+        $this->apellido = $apellido;
+        $update_plan = callAPI('PUT', 'http://localhost:3000/usuario', json_encode($this));
         $response = json_decode($update_plan, true);
-        if ($response['error'] == true) {
-            return $response['mensaje'];
-        }
-        $data = $response['response']['data'][0];
+        return $response;
     }
 
-    function delete($usuario_borrar)
+    function delete()
     {
-        $delete_plan = callAPI('DELETE', 'http://localhost:3000/usuario', json_encode($usuario_borrar));
+        $delete_plan = callAPI('DELETE', 'http://localhost:3000/usuario', false);
         $response = json_decode($delete_plan, true);
-        if ($response['error'] == true) {
-            return $response['mensaje'];
-        }
+        return $response;
     }
 }
