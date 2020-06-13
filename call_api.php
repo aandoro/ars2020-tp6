@@ -30,6 +30,7 @@ function callAPI($method, $url, $data)
     ));
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    //curl_setopt($curl, CURLOPT_USERPWD, $username . ":" . $password);
     // EXECUTE:
     $result = curl_exec($curl);
     if (!$result) {
