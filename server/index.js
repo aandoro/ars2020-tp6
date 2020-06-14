@@ -21,8 +21,6 @@ const admins = [{
     password: 'fpap'
 }]
 
-let token = '';
-
 let usuarios = [];
 let contador_usuarios = 1;
 

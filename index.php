@@ -1,14 +1,21 @@
 <?php
 include('login.php');
 
+session_start();
 $login = new Login();
 $usuario_ing = $_POST['username'];
 $clave_ing = $_POST['password'];
 $msj = "";
+$_SESSION['usuario'] = "";
+$_SESSION['contrasena'] = "";
 
 if (isset($_POST['ing'])) {
-    $msj = $login->login($usuario_ing, $clave_ing);
-    header('home.php');
+    $msj = $login->sig_in($usuario_ing, $clave_ing);
+    if ($msj['respuesta'] != null) {
+        $_SESSION['usuario'] = $msj['respuesta']['username'];
+        $_SESSION['contrasena'] = $msj['respuesta']['password'];
+        header("Location: ./home.php");
+    }
 }
 
 ?>
@@ -23,7 +30,7 @@ if (isset($_POST['ing'])) {
 
 <body>
     <h3>Inicio de sesion: </h3>
-    <form action="index.php" method="post">
+    <form action="." method="post">
         <p>Ingrese usuario: </p>
         <input type="text" name="username" required>
         <p>Ingrese contraseña: </p>
@@ -32,6 +39,7 @@ if (isset($_POST['ing'])) {
         <button type="submit" name="ing">Ingresar</button>
     </form>
     <br>
+    <p style="color: red"><?php echo $msj['mensaje'] ?></p>
 </body>
 
 </html>

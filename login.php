@@ -8,7 +8,7 @@ class Login
     var $password;
 
 
-    function login($username, $password)
+    function sig_in($username, $password)
     {
         $this->username = $username;
         $this->password = $password;

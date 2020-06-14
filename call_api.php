@@ -1,6 +1,7 @@
 <?php
 function callAPI($method, $url, $data)
 {
+    session_start();
     $curl = curl_init();
     switch ($method) {
         case "POST":
@@ -30,7 +31,7 @@ function callAPI($method, $url, $data)
     ));
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-    //curl_setopt($curl, CURLOPT_USERPWD, $username . ":" . $password);
+    curl_setopt($curl, CURLOPT_USERPWD, $_SESSION['usuario'] . ":" . $_SESSION['contrasena']);
     // EXECUTE:
     $result = curl_exec($curl);
     if (!$result) {
