@@ -40,6 +40,8 @@ if (isset($_POST['ing'])) {
     </form>
     <br>
     <p style="color: red"><?php echo $msj['mensaje'] ?></p>
+
+
 </body>
 
 </html>

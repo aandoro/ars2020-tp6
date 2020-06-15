@@ -36,7 +36,7 @@ app.get('/', function (req, res) {
         codigo: 200,
         mensaje: 'Punto de inicio'
     };
-    res.send(respuesta);
+    res.status(respuesta.codigo).send(respuesta);
 });
 
 app.post('/login', function (req, res) {
@@ -54,8 +54,9 @@ app.post('/login', function (req, res) {
             respuesta: req.body
         };
     }
+    console.log(respuesta);
 
-    res.send(respuesta);
+    res.status(respuesta.codigo).send(respuesta);
 })
 
 function login(obj, list) {
@@ -110,7 +111,7 @@ app.route('/usuarios')
                 };
             }
         }
-        res.send(respuesta);
+        res.status(respuesta.codigo).send(respuesta);
     })
     .post(function (req, res) {
         if (!isAdmin(req.headers.authorization, admins)) {
@@ -146,7 +147,7 @@ app.route('/usuarios')
             }
         }
 
-        res.send(respuesta);
+        res.status(respuesta.codigo).send(respuesta);
     });
 app.route('/usuarios/:id')
     .get(function (req, res) {
@@ -173,7 +174,7 @@ app.route('/usuarios/:id')
                 };
             }
         }
-        res.send(respuesta);
+        res.status(respuesta.codigo).send(respuesta);
     })
     .put(function (req, res) {
         if (!isAdmin(req.headers.authorization, admins)) {
@@ -207,7 +208,7 @@ app.route('/usuarios/:id')
                 }
             }
         }
-        res.send(respuesta);
+        res.status(respuesta.codigo).send(respuesta);
     })
     .delete(function (req, res) {
         if (!isAdmin(req.headers.authorization, admins)) {
@@ -232,7 +233,7 @@ app.route('/usuarios/:id')
                 };
             }
         }
-        res.send(respuesta);
+        res.status(respuesta.codigo).send(respuesta);
     });
 
 function containsObject(obj, list) {
@@ -298,7 +299,7 @@ app.use(function (req, res, next) {
         codigo: 404,
         mensaje: 'URL no encontrada'
     };
-    res.status(404).send(respuesta);
+    res.status(respuesta.codigo).send(respuesta);
 });
 
 app.listen(3000, () => {
